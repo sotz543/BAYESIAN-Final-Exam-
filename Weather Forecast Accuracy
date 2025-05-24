@@ -1,0 +1,37 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+# 3rd Problem Weather Forecast Accuracy
+
+# Prior probability of rain
+prior_rain = 0.5
+prior_no_rain = 1 - prior_rain
+
+# Forecast 
+p_forecast_rain_given_rain = 0.85  
+p_forecast_rain_given_no_rain = 0.1  
+
+# Marginal probability 
+p_forecast_rain = (p_forecast_rain_given_rain * prior_rain) + \
+                  (p_forecast_rain_given_no_rain * prior_no_rain)
+
+# Posterior probabilities
+posterior_rain_given_forecast = (p_forecast_rain_given_rain * prior_rain) / p_forecast_rain
+posterior_no_rain_given_forecast = (p_forecast_rain_given_no_rain * prior_no_rain) / p_forecast_rain
+
+labels = ['Prior Rain', 'Prior No Rain', 'Posterior Rain', 'Posterior No Rain']
+values = [prior_rain, prior_no_rain, posterior_rain_given_forecast, posterior_no_rain_given_forecast]
+colors = ['red', 'blue', 'green', 'orange']
+
+plt.figure(figsize=(10, 6))
+bars = plt.bar(labels, values, color=colors, edgecolor='black')
+plt.title("Weather Forecast Accuracy")
+plt.ylim(0, 1)
+plt.ylabel('Probability')
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2.0, yval + 0.02, f'{yval:.2f}', ha='center', va='bottom')
+
+plt.tight_layout()
+plt.show()
