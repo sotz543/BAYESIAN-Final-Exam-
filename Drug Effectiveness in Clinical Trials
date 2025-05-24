@@ -3,12 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Prior belief
-prior_effective = 0.6
+prior_effective = 0.4
 prior_ineffective = 1 - prior_effective
 
 # Likelihoods of improvement
-p_improve_given_effective = 0.8
-p_improve_given_ineffective = 0.2
+p_improve_given_effective = 0.9
+p_improve_given_ineffective = 0.3
 
 # Marginal probability of improvement
 p_improve = (p_improve_given_effective * prior_effective) + \
