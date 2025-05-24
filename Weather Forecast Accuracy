@@ -1,8 +1,7 @@
+# 3rd Problem Weather Forecast Accuracy
+
 import numpy as np
 import matplotlib.pyplot as plt
-
-
-# 3rd Problem Weather Forecast Accuracy
 
 # Prior probability of rain
 prior_rain = 0.5
