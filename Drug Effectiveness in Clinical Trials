@@ -17,3 +17,22 @@ p_improve = (p_improve_given_effective * prior_effective) + \
 # Posterior probabilities
 posterior_effective_given_improve = (p_improve_given_effective * prior_effective) / p_improve
 posterior_ineffective_given_improve = (p_improve_given_ineffective * prior_ineffective) / p_improve
+
+labels = ['Prior Effective', 'Prior Ineffective', 
+          'Posterior Effective', 'Posterior Ineffective']
+values = [prior_effective, prior_ineffective, 
+          posterior_effective_given_improve, posterior_ineffective_given_improve]
+colors = ['blue', 'orange', 'green', 'red']
+
+plt.figure(figsize=(10, 6))
+bars = plt.bar(labels, values, color=colors, edgecolor='black')
+plt.title("Bayesian Update: Drug Effectiveness in Clinical Trials")
+plt.ylim(0, 1)
+plt.ylabel('Probability')
+
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2.0, yval + 0.02, f'{yval:.2f}', ha='center', va='bottom')
+
+plt.tight_layout()
+plt.show()
