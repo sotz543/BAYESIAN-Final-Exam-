@@ -1,0 +1,45 @@
+#1st Bayesian Problem. 
+#Email Spam Detection for lottery, I experienced it commonly
+import numpy as np
+import matplotlib.pyplot as plt
+
+#probabilities
+p_spam = 0.2
+p_legit = 1 - p_spam
+
+p_lottery_given_spam = 0.7
+p_lottery_given_legit = 0.01
+
+# Prior
+prior_spam = p_spam
+prior_legit = p_legit
+
+# Likelihoods
+likelihood_spam = p_lottery_given_spam
+likelihood_legit = p_lottery_given_legit
+
+# Marginal 
+p_lottery = (likelihood_spam * prior_spam) + (likelihood_legit * prior_legit)
+
+# Posterior
+posterior_spam_given_lottery = (likelihood_spam * prior_spam) / p_lottery
+posterior_legit_given_lottery = (likelihood_legit * prior_legit) / p_lottery
+
+print(f"Marginal Probability (P('lottery')): {p_lottery:.4f}")
+print(f"Posterior P(Spam | 'lottery'): {posterior_spam_given_lottery:.4f}")
+print(f"Posterior P(Legit | 'lottery'): {posterior_legit_given_lottery:.4f}")
+
+labels = ['Prior Spam', 'Prior legit', 'Posterior Spam', 'Posterior legit']
+values = [prior_spam, prior_legit, posterior_spam_given_lottery, posterior_legit_given_lottery]
+colors = ['blue', 'orange', 'red', 'green']
+
+plt.figure(figsize=(10, 6))
+bars = plt.bar(labels, values, color=colors, edgecolor='black')
+plt.title("Bayesian Update: Spam Detection from Keyword 'lottery'")
+plt.ylim(0, 1)
+plt.ylabel('Probability')
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2.0, yval + 0.02, f'{yval:.2f}', ha='center', va='bottom')
+
+plt.show()
